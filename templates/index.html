@@ -5,9 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkerboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-    <h1>hello</h1>
 <body>
-    
+    <!-- used inline styling to gain access to the contexts from main, -->
+    <style>
+        .color1{
+            background-color: {{color1}};
+        }
+        .color2{
+            background-color: {{color2}};  
+        }
+        .color1 :nth-child(even){
+            background-color: {{color2}};
+        }
+        .color2 :nth-child(even){
+            background-color: {{color1}}
+        }
+    </style>
+    <table>
+        <tbody>
+            {% for i in range(0,x) %}
+            <tr 
+            {% if i%2 == 0 %} 
+            class = "color1"
+            {% endif %} 
+            {% if i%2 != 0 %} 
+            class= "color2" 
+            {% endif %}>
+                {% for x in range(0,y) %}
+                <td>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
